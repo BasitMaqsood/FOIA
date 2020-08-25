@@ -1,12 +1,17 @@
 import jwtDecode from 'jwt-decode';
 import http from './httpService';
 
-const apiEndpoint = '/admin/login';
+const apiEndpoint = '/auth';
 const tokenKey = 'x-auth-token';
 
 export async function login(loginObj) {
   const response = await http.post(apiEndpoint, loginObj);
-  await localStorage.setItem(tokenKey, response.data);
+
+  const {
+    data: { token },
+  } = response;
+
+  await localStorage.setItem(tokenKey, token);
   return response;
 }
 

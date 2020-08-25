@@ -26,7 +26,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { Grid, CircularProgress } from '@material-ui/core';
 
 import { DrawerRoutes } from 'components';
-import { Categories, Articles, Users, Admins } from 'pages';
+import { Users } from 'pages';
 
 const toastTime = {
   autoClose: 2500,
@@ -240,19 +240,9 @@ const AuthRoutes = props => {
             </Grid>
           ) : (
             <Switch>
-              <Route path="/" exact component={Categories} />
+              <Route path="/" exact render={() => <h1> Logged In </h1>} />
+
               <Route path="/users" exact component={Users} />
-              <Route path="/admins" exact component={Admins} />
-              <Route
-                path="/articles"
-                exact
-                render={props => (
-                  <Articles
-                    {...props}
-                    handleLoaderOnSmall={handleLoaderOnSmall}
-                  />
-                )}
-              />
             </Switch>
           )}
         </Container>

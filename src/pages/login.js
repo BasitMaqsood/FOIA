@@ -5,8 +5,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
   Box,
   Typography,
   makeStyles,
@@ -61,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn(props) {
   let ref = React.useRef();
   const classes = useStyles();
-  const [email, setemail] = useState('');
+  const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
   const [error, setError] = useState({});
   const [disabled, setDisabled] = useState(false);
@@ -107,7 +105,7 @@ export default function SignIn(props) {
     setDisabled(true);
     ref.current.complete();
     const loginObj = {
-      email,
+      username,
       password,
     };
     const error = await validate(loginObj);
@@ -151,16 +149,16 @@ export default function SignIn(props) {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            error={error.email ? true : false}
+            error={error.username ? true : false}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            helperText={error.email ? error.email : null}
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            helperText={error.username ? error.username : null}
             autoFocus
             onChange={handleChanage}
           />
@@ -177,10 +175,6 @@ export default function SignIn(props) {
             id="password"
             autoComplete="current-password"
             onChange={handleChanage}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
           />
           <Button
             fullWidth

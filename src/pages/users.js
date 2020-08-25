@@ -3,7 +3,7 @@ import Joi from 'joi-browser';
 import MaterialTable from 'material-table';
 import { toast } from 'react-toastify';
 import { UserService } from 'services';
-import { userSchema, userCreateSchema } from 'utils/schema';
+import { userCreateSchema } from 'utils/schema';
 
 const toastTime = {
   autoClose: 2500,
@@ -11,9 +11,9 @@ const toastTime = {
 
 const UserData = () => {
   const customColumns = [
-    { title: 'Names', field: 'name' },
     { title: 'Email', field: 'email' },
-    { title: 'Phone', field: 'phone' },
+    { title: 'Names', field: 'fullname' },
+    { title: 'Username', field: 'username' },
     { title: 'Password', field: 'password' },
   ];
   const [loader, setLoader] = React.useState(true);
@@ -29,29 +29,11 @@ const UserData = () => {
     return errors;
   };
 
-  const validateUser = objUser => {
-    const options = { abortEarly: false };
-    const { error } = Joi.validate(objUser, userSchema, options);
-
-    if (!error) return null;
-    const errors = {};
-    for (let item of error.details) errors[item.path[0]] = item.message;
-    return errors;
-  };
-
   useEffect(() => {
     async function getUsers() {
       setLoader(true);
-      // You can await here
       const { data } = await UserService.getAllUsers();
-      var users = data.map(usr => ({
-        name: usr.name,
-        _id: usr._id,
-        email: usr.email,
-        phone: usr.phone,
-        password: usr.password,
-      }));
-      setUsers(users);
+      setUsers(data);
       setLoader(false);
     }
 
@@ -60,6 +42,7 @@ const UserData = () => {
 
   const insetNewCategory = async newData => {
     const error = validateCreateUser(newData);
+
     if (error) {
       if (error) {
         for (let item in error) {
@@ -81,7 +64,7 @@ const UserData = () => {
   };
 
   const updateUser = async newData => {
-    const error = validateUser(newData);
+    const error = validateCreateUser(newData);
     if (error) {
       for (let item in error) {
         toast.error(error[item], toastTime);
@@ -114,15 +97,8 @@ const UserData = () => {
 
   const getUsers = async response => {
     const { data } = await UserService.getAllUsers();
-    var users = data.map(usr => ({
-      name: usr.name,
-      _id: usr._id,
-      email: usr.email,
-      phone: usr.phone,
-      password: usr.password,
-    }));
-    setUsers(users);
-    toast.success(response.data, toastTime);
+    setUsers(data);
+    // toast.success(response.data, toastTime);
     setLoader(false);
   };
 

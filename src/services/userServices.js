@@ -1,6 +1,6 @@
 import http from './httpService';
 
-const apiEndpoint = '/user';
+const apiEndpoint = '/users';
 
 export function getAllUsers() {
   try {
@@ -13,7 +13,7 @@ export function getAllUsers() {
 }
 
 export function postUser(objUser) {
-  return http.post(`${apiEndpoint}/admin`, objUser, {
+  return http.post(`${apiEndpoint}`, objUser, {
     headers: { token: localStorage.getItem('x-auth-token') },
   });
 }

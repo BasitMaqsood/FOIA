@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import _ from 'lodash';
 
 import { PublicRoutes, AuthRoutes } from 'routing';
-import { CategoryService } from 'services';
+// import { CategoryService } from 'services';
 
 const useStyles = makeStyles(theme => ({
   heightLoader: {
@@ -25,17 +25,18 @@ const App = () => {
       fetchingAllCat();
     }
     async function fetchingAllCat() {
-      setLoaderFlag(true);
-      try {
-        const { status } = await CategoryService.getAllCategories();
-        if (status === 200) {
-          setIsloggedin(true);
-          setLoaderFlag(false);
-        }
-      } catch (ex) {
-        setLoaderFlag(false);
-        setIsloggedin(false);
-      }
+      setIsloggedin(true);
+      // setLoaderFlag(true);
+      // try {
+      //   const { status } = await CategoryService.getAllCategories();
+      //   if (status === 200) {
+      //     setIsloggedin(true);
+      //     setLoaderFlag(false);
+      //   }
+      // } catch (ex) {
+      //   setLoaderFlag(false);
+      //   setIsloggedin(false);
+      // }
     }
   }, []);
 
