@@ -34,17 +34,6 @@ export default () => {
       <Link
         to="/"
         className={classes.textDecorationDisable}
-        onClick={() => handleSelectedOption(1)}>
-        <ListItem button>
-          <ListItemIcon>
-            {dataFlag ? <DashboardIcon color="primary" /> : <DashboardIcon />}
-          </ListItemIcon>
-          <ListItemText primary="Data" />
-        </ListItem>
-      </Link>
-      <Link
-        to="/users"
-        className={classes.textDecorationDisable}
         onClick={() => handleSelectedOption(2)}>
         <ListItem button>
           <ListItemIcon>

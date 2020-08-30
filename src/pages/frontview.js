@@ -214,7 +214,6 @@ class FrontView extends Component {
         className="ag-theme-alpine"
         style={{
           height: '250px',
-          width: '600px',
         }}>
         <AgGridReact
           columnDefs={this.state.columnDefs}

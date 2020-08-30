@@ -56,9 +56,10 @@ const UserData = () => {
       const response = await UserService.postUser(newData);
       if (response.status === 200) {
         getUsers(response);
+        toast.success('User Added', toastTime);
       }
     } catch (ex) {
-      toast.info(ex.response.data, toastTime);
+      toast.error(ex.response.data, toastTime);
       setLoader(false);
     }
   };
@@ -77,6 +78,7 @@ const UserData = () => {
       const response = await UserService.putUser(newData);
       if (response.status === 200) {
         getUsers();
+        toast.info('User Updated', toastTime);
       }
     } catch (ex) {
       toast.error(ex.data, toastTime);
@@ -89,6 +91,7 @@ const UserData = () => {
       const response = await UserService.deleteUser(oldData._id);
       if (response.status === 200) {
         getUsers(response);
+        toast.error('User Deleted', toastTime);
       }
     } catch (ex) {
       toast.error(ex.response.data, toastTime);
