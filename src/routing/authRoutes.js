@@ -24,6 +24,7 @@ import { toast } from 'react-toastify';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { Grid, CircularProgress } from '@material-ui/core';
+import EcoIcon from '@material-ui/icons/Eco';
 
 import { DrawerRoutes } from 'components';
 import { Users } from 'pages';
@@ -42,10 +43,10 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
+    paddingLeft: 5,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
     ...theme.mixins.toolbar,
   },
   appBar: {
@@ -217,6 +218,11 @@ const AuthRoutes = props => {
         }}
         open={open}>
         <div className={classes.toolbarIcon}>
+          <EcoIcon style={{ color: '#17a2b8', marginRight: 13 }} />
+          <Typography variant="h5" style={{ marginRight: 29 }}>
+            {' '}
+            FOIA{' '}
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
